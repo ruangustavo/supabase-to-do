@@ -12,11 +12,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
-import { MoreHorizontal, RefreshCw } from 'lucide-react'
+import { MoreHorizontal, RefreshCw, Trash } from 'lucide-react'
 import { UpdateTaskDialog } from './update-task-dialog'
 import { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { deleteTask } from '../actions/delete-task'
 
 type TaskProps = {
   task: ITask
@@ -95,6 +96,15 @@ export function Task({ task }: TaskProps) {
                     Atualizar
                   </span>
                 </DialogTrigger>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <button
+                  className="inline-flex items-center text-rose-500"
+                  onClick={() => deleteTask({ taskId: task.id })}
+                >
+                  <Trash className="mr-2 size-4" />
+                  Excluir
+                </button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
