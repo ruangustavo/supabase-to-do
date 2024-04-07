@@ -7,7 +7,7 @@ Projeto de aplicativo de tarefas para estudar **supabase**.
 - [x] O usuário deve ser capaz de se cadastrar na plataforma.
 - [x] O usuário deve ser capaz de fazer login utilizando suas credenciais.
 - [ ] O usuário deve ser capaz de criar, ler, atualizar e excluir (CRUD) informações de uma lista de tarefas.
-- [ ] O usuário deve ser capaz de marcar uma tarefa como concluída ou não concluída.
+- [x] O usuário deve ser capaz de marcar uma tarefa como concluída ou não concluída.
 
 ## Regras de negócios
 
