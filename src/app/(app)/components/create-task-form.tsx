@@ -17,7 +17,7 @@ const createTaskSchema = z.object({
 type CreateTaskFormValues = z.infer<typeof createTaskSchema>
 
 export function CreateTaskForm() {
-  const { register, handleSubmit } = useForm<CreateTaskFormValues>({
+  const { register, handleSubmit, reset } = useForm<CreateTaskFormValues>({
     defaultValues: {
       title: '',
       description: '',
@@ -38,6 +38,7 @@ export function CreateTaskForm() {
 
     if (data) {
       toast.success('Tarefa criada com sucesso!')
+      reset()
     }
   }
 
