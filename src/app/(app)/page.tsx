@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation'
 
 export default async function Home() {
   const supabase = createClient()
-
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -16,7 +15,9 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 pt-4 container space-y-8"></main>
+      <main className="flex-1 pt-4 container space-y-8">
+        <h1>hello world</h1>
+      </main>
     </>
   )
 }
