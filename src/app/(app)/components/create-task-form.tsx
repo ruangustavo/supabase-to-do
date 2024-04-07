@@ -44,21 +44,25 @@ export function CreateTaskForm() {
 
   return (
     <form
-      className="flex items-center gap-4 p-4 border rounded-md"
+      className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 border rounded-md"
       onSubmit={handleSubmit(handleCreateNewTask)}
     >
-      <div className="flex items-center gap-2.5 ">
-        <Label htmlFor="title">Título</Label>
+      <div className="flex items-center gap-2.5">
+        <Label htmlFor="title" className="w-[100px] sm:w-fit">
+          Título
+        </Label>
         <Input
           id="title"
           placeholder="Digite sua nova tarefa aqui..."
-          className="h-8 w-[150px]"
+          className="h-8 w-full sm:w-[150px]"
           {...register('title')}
         />
       </div>
 
       <div className="flex items-center gap-2.5 flex-grow">
-        <Label htmlFor="description">Descrição</Label>
+        <Label htmlFor="description" className="w-[100px] sm:w-fit">
+          Descrição
+        </Label>
         <Input
           id="description"
           placeholder="Digite a descrição da sua nova tarefa aqui..."

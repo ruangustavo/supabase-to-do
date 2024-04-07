@@ -51,7 +51,7 @@ export default function SignIn() {
   }
 
   return (
-    <div className="p-8 h-[600px] w-[400px] rounded-md flex flex-col justify-center gap-4">
+    <div className="p-8 w-full rounded-md flex flex-col justify-center gap-4">
       <h1 className="text-xl font-semibold tracking-tight text-center">
         Entre com sua conta
       </h1>

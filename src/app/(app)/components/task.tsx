@@ -4,7 +4,6 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Task as ITask } from '@/types/task'
 import { markTaskAsDone } from '../actions/mark-task-as-done'
 import { cn } from '@/lib/utils'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +17,7 @@ import { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { deleteTask } from '../actions/delete-task'
+import { Credenza, CredenzaTrigger } from '@/components/ui/credenza'
 
 type TaskProps = {
   task: ITask
@@ -60,13 +60,13 @@ export function Task({ task }: TaskProps) {
               </h1>
 
               {!isDone && (
-                <time className="text-xs text-muted-foreground">
+                <time className="text-xs text-muted-foreground hidden">
                   Adicionada {formatDate(task.created_at)}
                 </time>
               )}
 
               {task.done_at !== null && (
-                <time className="text-xs text-muted-foreground">
+                <time className="text-xs text-muted-foreground hidden">
                   Concluída {formatDate(task.done_at)}
                 </time>
               )}
@@ -81,7 +81,7 @@ export function Task({ task }: TaskProps) {
             </p>
           </div>
         </div>
-        <Dialog open={isUpdateTaskOpen} onOpenChange={setIsUpdateTaskOpen}>
+        <Credenza open={isUpdateTaskOpen} onOpenChange={setIsUpdateTaskOpen}>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
@@ -90,12 +90,12 @@ export function Task({ task }: TaskProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem>
-                <DialogTrigger>
+                <CredenzaTrigger>
                   <span className="inline-flex items-center">
                     <RefreshCw className="mr-2 size-4" />
                     Atualizar
                   </span>
-                </DialogTrigger>
+                </CredenzaTrigger>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <button
@@ -109,7 +109,7 @@ export function Task({ task }: TaskProps) {
             </DropdownMenuContent>
           </DropdownMenu>
           <UpdateTaskDialog task={task} onOpenChange={setIsUpdateTaskOpen} />
-        </Dialog>
+        </Credenza>
       </div>
     </li>
   )

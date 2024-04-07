@@ -2,12 +2,12 @@
 
 import { Button } from '@/components/ui/button'
 import {
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
+  CredenzaClose,
+  CredenzaContent,
+  CredenzaFooter,
+  CredenzaHeader,
+  CredenzaTitle,
+} from '@/components/ui/credenza'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Task } from '@/types/task'
@@ -17,7 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { updateTask } from '../actions/update-task'
 import { toast } from 'sonner'
 
-type UpdateTaskDialogProps = {
+type UpdateTaskCredenzaProps = {
   task: Task
   onOpenChange: (open: boolean) => void
 }
@@ -32,7 +32,7 @@ type UpdateTaskFormValues = z.infer<typeof updateTaskSchema>
 export function UpdateTaskDialog({
   task,
   onOpenChange,
-}: UpdateTaskDialogProps) {
+}: UpdateTaskCredenzaProps) {
   const { register, handleSubmit } = useForm<UpdateTaskFormValues>({
     values: {
       title: task.title,
@@ -63,12 +63,15 @@ export function UpdateTaskDialog({
   }
 
   return (
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Atualizar tarefa</DialogTitle>
-      </DialogHeader>
+    <CredenzaContent>
+      <CredenzaHeader>
+        <CredenzaTitle>Atualizar tarefa</CredenzaTitle>
+      </CredenzaHeader>
 
-      <form className="space-y-4" onSubmit={handleSubmit(handleUpdateTask)}>
+      <form
+        className="space-y-4 p-4 sm:p-0"
+        onSubmit={handleSubmit(handleUpdateTask)}
+      >
         <div className="space-y-2">
           <Label>Título</Label>
           <Input {...register('title')} />
@@ -78,15 +81,15 @@ export function UpdateTaskDialog({
           <Input {...register('description')} />
         </div>
 
-        <DialogFooter>
-          <DialogClose asChild>
+        <CredenzaFooter className="gap-2 sm:gap-0 p-0">
+          <CredenzaClose asChild>
             <Button variant="secondary">Cancelar</Button>
-          </DialogClose>
+          </CredenzaClose>
           <Button type="submit" variant="success">
             Atualizar
           </Button>
-        </DialogFooter>
+        </CredenzaFooter>
       </form>
-    </DialogContent>
+    </CredenzaContent>
   )
 }
