@@ -60,13 +60,13 @@ export function Task({ task }: TaskProps) {
               </h1>
 
               {!isDone && (
-                <time className="text-xs text-muted-foreground hidden">
+                <time className="text-xs text-muted-foreground sr-only md:not-sr-only">
                   Adicionada {formatDate(task.created_at)}
                 </time>
               )}
 
               {task.done_at !== null && (
-                <time className="text-xs text-muted-foreground hidden">
+                <time className="text-xs text-muted-foreground sr-only md:not-sr-only">
                   Concluída {formatDate(task.done_at)}
                 </time>
               )}
