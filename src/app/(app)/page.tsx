@@ -23,9 +23,11 @@ export default async function Home() {
       <Header />
       <main className="flex-1 pt-4 container space-y-8">
         <CreateTaskForm />
-        <ul className="space-y-4">
-          {tasks && tasks.map((task) => <Task key={task.id} task={task} />)}
-        </ul>
+        <div className="p-4 border rounded-md">
+          <ul className="space-y-4">
+            {tasks && tasks.map((task) => <Task key={task.id} task={task} />)}
+          </ul>
+        </div>
       </main>
     </>
   )
