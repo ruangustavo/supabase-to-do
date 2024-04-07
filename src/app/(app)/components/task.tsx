@@ -15,6 +15,8 @@ import { Button } from '@/components/ui/button'
 import { MoreHorizontal, RefreshCw } from 'lucide-react'
 import { UpdateTaskDialog } from './update-task-dialog'
 import { useState } from 'react'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 type TaskProps = {
   task: ITask
@@ -24,6 +26,13 @@ export function Task({ task }: TaskProps) {
   const isDone = task.done_at !== null
 
   const [isUpdateTaskOpen, setIsUpdateTaskOpen] = useState(false)
+
+  function formatDate(date: string) {
+    return formatDistanceToNow(new Date(date), {
+      locale: ptBR,
+      addSuffix: true,
+    })
+  }
 
   return (
     <li>
@@ -39,15 +48,36 @@ export function Task({ task }: TaskProps) {
             }
           />
           <div className="space-y-2">
-            <h1
+            <div className="flex items-center gap-2">
+              <h1
+                className={cn(
+                  'text-lg font-medium tracking-tight',
+                  isDone && 'line-through text-muted-foreground',
+                )}
+              >
+                {task.title}
+              </h1>
+
+              {!isDone && (
+                <time className="text-xs text-muted-foreground">
+                  Adicionada {formatDate(task.created_at)}
+                </time>
+              )}
+
+              {task.done_at !== null && (
+                <time className="text-xs text-muted-foreground">
+                  Concluída {formatDate(task.done_at)}
+                </time>
+              )}
+            </div>
+            <p
               className={cn(
-                'text-lg font-medium tracking-tight',
+                'text-sm',
                 isDone && 'line-through text-muted-foreground',
               )}
             >
-              {task.title}
-            </h1>
-            <p className="text-sm text-muted-foreground">{task.description}</p>
+              {task.description}
+            </p>
           </div>
         </div>
         <Dialog open={isUpdateTaskOpen} onOpenChange={setIsUpdateTaskOpen}>
